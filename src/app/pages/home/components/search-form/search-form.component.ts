@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { GlobalProviderService } from 'src/app/services/global-provider.service';
 import LocalidadesService from 'src/app/services/localidades.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
@@ -14,13 +15,34 @@ export class SearchFormComponent implements OnInit {
   hoyDesde: Date = new Date();
   hoyHasta: Date = new Date();
   localidades$?: Observable<any>;
-
   formData: any = {
     desde: '',
     hasta: '',
+    idaVuelta:true
   }
 
-  constructor( private _localidades: LocalidadesService, private _gs: GlobalProviderService ) {}
+  formBus=new FormGroup({
+    salida: new FormControl('', Validators.required),
+    destino:new FormControl('' , Validators.required),
+    pasajeros:new FormControl(1, [Validators.required, Validators.minLength(1)]),
+    desde:new FormControl('' , Validators.required),
+    hasta:new FormControl()
+  })
+
+  get salidaControl():FormControl{
+    return this.formBus.get('salida') as FormControl;
+  }
+  get destinoControl():FormControl{
+    return this.formBus.get('destino') as FormControl;
+  }
+  get pasajerosControl():FormControl{
+    return this.formBus.get('pasajeros') as FormControl;
+  }
+  get desdeControl():FormControl{
+    return this.formBus.get('desde') as FormControl;
+  }
+
+  constructor( private _localidades: LocalidadesService, private _gs: GlobalProviderService, private formBuilder: FormBuilder ) {}
 
   get minDate(): string {
     return this.hoyDesde.toISOString().split('T')[0];
@@ -42,8 +64,17 @@ export class SearchFormComponent implements OnInit {
     this._gs.emitirDestino(datos.value);
   }
 
-  submitForm(f: NgForm){
-    console.log(f);
-  }
+  submitForm(){
+    if(this.formBus.valid){
+      const jsonColectivos = {
+        origen: this.formBus.value.salida,
+        destino: this.formBus.value.destino,
+        pasajeros: this.formBus.value.pasajeros,
+        ida: this.formBus.value.desde,
+        vuelta: this.formBus.value.hasta
+      }
 
+      console.log(jsonColectivos)
+    }
+  }
 }

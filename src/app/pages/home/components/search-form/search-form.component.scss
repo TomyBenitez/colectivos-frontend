@@ -5,3 +5,23 @@
 .label{
 	@apply flex flex-col gap-1 font-semibold text-sm
 }
+
+.error-message{
+	color: red;
+}
+
+.checkboxIda{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	input{
+		height: 15px;
+		width: 15px;
+	}
+	label{
+		margin: 5px;
+		padding: 5px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-style: bold;
+	}
+}

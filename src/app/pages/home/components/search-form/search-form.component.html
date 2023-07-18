@@ -1,8 +1,8 @@
-<form class="flex flex-col justify-between gap-4" #f="ngForm" (ngSubmit)="submitForm(f)">
+<form class="flex flex-col justify-between gap-4" (ngSubmit)="submitForm()" [formGroup]="formBus">
 	<div class="flex flex-col gap-4">
 		<label class="label">
 			Desde:
-			<select #selectOrigen (change)="emitirOrigen(selectOrigen)" class="input" id="from-list">
+			<select #selectOrigen (change)="emitirOrigen(selectOrigen)" class="input" id="from-list" formControlName="salida">
 				<option value="">Seleccione una ciudad</option>
 				<option
 					*ngFor="let localidad of localidades$ | async"
@@ -11,10 +11,13 @@
 					{{localidad.nombre}}
 				</option>
 			</select>
+			<div class="error" *ngIf="salidaControl.invalid && salidaControl.touched">
+				<p class="error-message">Origen Invalido! ¿desde donde quieres comenzar tu viaje?</p>
+			</div>
 		</label>
 		<label class="label">
 			Hasta:
-			<select #selectDestino (change)="emitirDestino(selectDestino)" class="input" id="from-list">
+			<select #selectDestino (change)="emitirDestino(selectDestino)" class="input" id="from-list" formControlName="destino">
 				<option value="">Seleccione una ciudad</option>
 				<option
 					*ngFor="let localidad of localidades$ | async"
@@ -23,21 +26,34 @@
 					{{localidad.nombre}}
 				</option>
 			</select>
+			<div class="error" *ngIf="destinoControl.invalid && destinoControl.touched">
+				<p class="error-message">Destino Invalido! ¿hacía donde quieres viajar?</p>
+			</div>
 		</label>
+		<div class="checkboxIda">
+			<label>Solo Ida:</label>
+			<input type="checkbox" id="checkboxIda" [(ngModel)]="formData.idaVuelta">
+		</div>
 		<div class="flex flex-row justify-between">
 			<label class="label">
 				Cant. Pasajeros:
-				<input class="input" type="number" placeholder="1">
+				<input class="input" type="number" placeholder="1" formControlName="pasajeros">
 			</label>
 			<label class="label">
-				Desde:
-				<input class="input" name="desde" [(ngModel)]="formData.desde" type="date" [min]="hoyDesde | date:'yyyy-MM-dd'">
+				Ida:
+				<input class="input" name="desde" [(ngModel)]="formData.desde" type="date" [min]="hoyDesde | date:'yyyy-MM-dd'" formControlName="desde">
 			</label>
 			<label class="label">
-				Desde:
-				<input class="input" name="hasta" [(ngModel)]="formData.hasta" type="date" [min]="formData.desde ? formData.desde : hoyHasta | date:'yyyy-MM-dd'">
+				Vuelta:
+				<input class="input" name="hasta" [(ngModel)]="formData.hasta" type="date" [min]="formData.desde ? formData.desde : hoyHasta | date:'yyyy-MM-dd'" formControlName="hasta" [disabled]="!formData.idaVuelta">
 			</label>
 		</div>
+	</div>
+	<div class="error" *ngIf="pasajerosControl.invalid && pasajerosControl.touched">
+		<p class="error-message">Elige al menos 1 pasajero.</p>
+	</div>
+	<div class="error" *ngIf="desdeControl.invalid && desdeControl.touched">
+		<p class="error-message">Debes elegir una fecha válida! ¿Cuándo deseas viajar?</p>
 	</div>
 	<hr>
 	<div class="h-auto flex flex-col gap-4">
@@ -46,3 +62,5 @@
 		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet inventore, corporis autem omnis vitae eaque culpa recusandae veniam ipsam eum? Maxime molestias numquam magni, debitis illo eveniet sed quas sit?</p>
 	</div>
 </form>
+
+<pre>{{formBus.value | json}}</pre>
