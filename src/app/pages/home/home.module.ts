@@ -4,21 +4,22 @@ import HomeComponent from "./home.component";
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HttpClientJsonpModule } from "@angular/common/http";
 import { MapComponentComponent } from './components/map-component/map-component.component';
 
 @NgModule({
 	declarations:[
 		HomeComponent,
-	SearchFormComponent,
-    MapComponentComponent
+		SearchFormComponent,
+    	MapComponentComponent
 	],
 	imports: [
 		CommonModule,
 		HomeRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
-		HttpClientModule
+		HttpClientModule,
+		HttpClientJsonpModule
 	],
 	exports: []
 })
