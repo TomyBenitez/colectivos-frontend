@@ -37,14 +37,14 @@
 			</label>
 			<label class="label">
 				Ida:
-				<input class="input" name="desde" [(ngModel)]="formData.desde" type="date" [min]="hoyDesde | date:'yyyy-MM-dd'">
+				<input class="input" name="desde" [min]="hoyDesde | date:'yyyy-MM-dd'" formControlName="desde" type="date">
 			</label>
 			<label class="label">
 				<span>Vuelta:</span>
-				<input [disabled]="!formData.idaVuelta" class="input" name="hasta" [(ngModel)]="formData.hasta" type="date" [min]="formData.desde ? formData.desde : hoyHasta | date:'yyyy-MM-dd'">
+				<input class="input" name="hasta" [min]="formBus.get('desde')?.value ? formBus.get('desde')?.value : hoyHasta | date:'yyyy-MM-dd'" formControlName="hasta" type="date">
 			</label>
 			<label class="flex items-center justify-center gap-2 bg-slate-300 rounded-md cursor-pointer">
-				<input type="checkbox" name="idaVuelta" [(ngModel)]="formData.idaVuelta">
+				<input type="checkbox" name="idaVuelta" formControlName="idaVuelta" #checkboxIdaVuelta (change)="toggleIdaVuelta(checkboxIdaVuelta.checked)">
 				Ida y vuelta
 			</label>
 		</div>

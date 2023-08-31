@@ -1,3 +1,4 @@
 <div id="mainMapContainer" *ngIf="apiLoaded | async">
   <div id="mainMap"></div>
+  <div *ngIf="activeMap" class="activeMap">El origen tiene que ser diferente al destino!</div>
 </div>

@@ -16,6 +16,7 @@ export class MapComponentComponent implements OnInit {
   map?: any;
   origen: any = null;
   destino: any = null;
+  activeMap:boolean = false;
   apiLoaded: Observable<boolean>;
 
   constructor(private _gs: GlobalProviderService, private httpClient: HttpClient) {
@@ -68,6 +69,12 @@ export class MapComponentComponent implements OnInit {
 
   buildMap(){
     if(!this.origen || !this.destino) return;
+    if(this.origen.lat == this.destino.lat && this.origen.lng ==this.destino.lng){
+      this.activeMap=true;
+      return;
+    }else{
+      this.activeMap=false;
+    }
 
     const mainMapContainer = document.querySelector("mainMapContainer");
     if(mainMapContainer)

@@ -27,7 +27,8 @@ export class SearchFormComponent implements OnInit {
     destino:new FormControl('' , Validators.required),
     pasajeros:new FormControl(1, [Validators.required, Validators.minLength(1)]),
     desde:new FormControl('' , Validators.required),
-    hasta:new FormControl()
+    hasta:new FormControl(),
+    idaVuelta: new FormControl(false)
   })
 
   get salidaControl():FormControl{
@@ -43,7 +44,9 @@ export class SearchFormComponent implements OnInit {
     return this.formBus.get('desde') as FormControl;
   }
 
-  constructor( private _localidades: LocalidadesService, private _gs: GlobalProviderService, private formBuilder: FormBuilder ) {}
+  constructor( private _localidades: LocalidadesService, private _gs: GlobalProviderService, private formBuilder: FormBuilder ) {
+    this.toggleIdaVuelta(false);
+  }
 
   get minDate(): string {
     return this.hoyDesde.toISOString().split('T')[0];
@@ -91,17 +94,29 @@ export class SearchFormComponent implements OnInit {
     );
   }
 
-  submitForm(){
-    if(this.formBus.valid){
-      const jsonColectivos = {
-        origen: this.formBus.value.salida,
-        destino: this.formBus.value.destino,
-        pasajeros: this.formBus.value.pasajeros,
-        ida: this.formBus.value.desde,
-        vuelta: this.formBus.value.hasta
-      }
-
-      console.log(jsonColectivos)
+  //Toggle for Date Input using checkbox:
+  toggleIdaVuelta(checked: boolean) {
+    const hastaControl = this.formBus.get('hasta');
+    if (checked) {
+      hastaControl?.enable();
+    } else {
+      hastaControl?.disable();
+      hastaControl?.setValue(null);
     }
   }
+
+  submitForm() {
+    if (this.formBus.valid) {
+      const formData = this.formBus.value;
+      const jsonColectivos = {
+        origen: formData.salida,
+        destino: formData.destino,
+        pasajeros: formData.pasajeros,
+        ida: formData.desde,
+        vuelta: formData.hasta
+      };
+      console.log(jsonColectivos);
+    }
+  }
+  
 }

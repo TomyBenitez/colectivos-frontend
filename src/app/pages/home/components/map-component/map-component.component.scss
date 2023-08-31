@@ -1,3 +1,13 @@
 #mainMap{
 	@apply w-full bg-gray-200 h-[500px] rounded-md
 }
+
+.activeMap{
+	color: black;
+	text-align: center;
+	background:red;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 5px;
+	border: black 1px solid;
+}

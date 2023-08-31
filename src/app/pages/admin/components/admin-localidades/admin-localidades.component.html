@@ -1,0 +1,22 @@
+<div class="table-container" *ngIf="localidades">
+    <table class="table-localidades">
+        <thead>
+            <tr>
+                <td>Orden</td>
+                <td>Nombre</td>
+                <td>Latitud</td>
+                <td>Longitud</td>
+                <td>Id</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of localidades">
+                <td>{{i.orden}}</td>
+                <td>{{i.nombre}}</td>
+                <td>{{i.latitud}}</td>
+                <td>{{i.longitud}}</td>
+                <td>{{i._id}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
