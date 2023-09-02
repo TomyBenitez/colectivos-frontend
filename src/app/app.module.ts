@@ -8,12 +8,15 @@ import { RouterModule } from '@angular/router';
 import ContainerComponent from './components/shared/container/container.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    ContainerComponent
+    ContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(()=>initializeApp(environment.firebaseConfig)),
+    provideAuth(()=>getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]
