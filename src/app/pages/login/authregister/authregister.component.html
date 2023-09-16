@@ -1,1 +1,20 @@
-<p>authregister works!</p>
+<div class="container">
+    <div class="tarjeta">
+        <form (ngSubmit)="submitForm()" #myForm="ngForm">
+            <p>Nombre:</p>
+            <input type="text" placeholder="Nombre" name="nombre" [(ngModel)]="formData.nombre">
+            <p>Apellido:</p>
+            <input type="text" placeholder="Apellido" name="apellido" [(ngModel)]="formData.apellido">
+            <p>Email:</p>
+            <input type="email" placeholder="Ejemplo@gmail.com" name="correo" [(ngModel)]="formData.correo">
+            <p>Repetir Email:</p>
+            <input type="email" placeholder="Ejemplo@gmail.com" name="repetircorreo" [(ngModel)]="formData.repetircorreo">
+            <p>Contraseña:</p>
+            <input type="password" placeholder="Contraseña" name="contraseña" [(ngModel)]="formData.contrasena">
+            <p>Repetir Contraseña:</p>
+            <input type="password" placeholder="Contraseña" name="repetircontraseña" [(ngModel)]="formData.repetircontrasena" >
+            <p>¿Ya tenés una cuenta? <a href="/authlogin">Iniciar Sesión</a></p>
+            <button type="submit">Crear Cuenta</button>
+        </form>
+    </div>
+</div>

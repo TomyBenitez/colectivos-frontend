@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@angular/core";
-import { Auth, signInWithEmailAndPassword } from "@angular/fire/auth";
+import { Auth, UserCredential, signInWithEmailAndPassword } from "@angular/fire/auth";
 
 @Injectable({
     providedIn: 'root'
@@ -8,7 +8,7 @@ import { Auth, signInWithEmailAndPassword } from "@angular/fire/auth";
 export class AuthService{
     constructor(@Inject(Auth) private auth:Auth){}
 
-    iniciarSesion(usuario:string,password:string){
-        return
+    iniciarSesion(correo: string, password: string): Promise<UserCredential> {
+        return signInWithEmailAndPassword(this.auth, correo, password);
     }
 }
