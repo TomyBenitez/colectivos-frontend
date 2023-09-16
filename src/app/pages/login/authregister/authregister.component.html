@@ -12,7 +12,8 @@
             <p>Contraseña:</p>
             <input type="password" placeholder="Contraseña" name="contraseña" [(ngModel)]="formData.contrasena">
             <p>Repetir Contraseña:</p>
-            <input type="password" placeholder="Contraseña" name="repetircontraseña" [(ngModel)]="formData.repetircontrasena" >
+            <input type="password" placeholder="Contraseña" name="repetircontraseña" [(ngModel)]="formData.repetircontrasena">
+            <p class="errorForm" *ngIf="showError">{{messageError}}</p>
             <p>¿Ya tenés una cuenta? <a href="/authlogin">Iniciar Sesión</a></p>
             <button type="submit">Crear Cuenta</button>
         </form>
