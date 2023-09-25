@@ -8,9 +8,8 @@ const routes: Routes = [
   {path: '', pathMatch: 'full' , redirectTo: 'home'},
   {path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)},
   {path: 'search', loadChildren: () => import ('./pages/search/search.module').then(m => m.SearchModule)},
-  {path: 'admin', loadChildren:()=> import('./pages/admin/admin.module').then(m=>m.AdminModule), canActivate:[AuthGuard]},
-  {path: 'authlogin', component:AuthloginComponent},
-  {path: 'authregister', component:AuthregisterComponent},
+  {path: 'admin', loadChildren:()=> import('./pages/admin/admin.module').then(m=>m.AdminModule)},
+  {path: 'auth', loadChildren:() => import('./pages/login/login.module').then(m=>m.LoginModule)},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

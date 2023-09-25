@@ -4,15 +4,21 @@ import { AdminComponent } from './admin.component';
 import { AdminLocalidadesComponent } from './components/admin-localidades/admin-localidades.component';
 import { AdminViajesComponent } from './components/admin-viajes/admin-viajes.component';
 import { AdminPasajesComponent } from './components/admin-pasajes/admin-pasajes.component';
+import { AuthGuard } from 'src/app/guard/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: AdminComponent, children:[
-    {path: '', pathMatch:'full',redirectTo:'localidades'},
-    {path: 'localidades', component: AdminLocalidadesComponent},
-    {path: 'viajes', component: AdminViajesComponent},
-    {path: 'pasajes', component: AdminPasajesComponent},
-    {path: '**', pathMatch:'full', redirectTo:''}
-  ]},
+	{
+		path: '',
+		component: AdminComponent,
+		canActivate: [AuthGuard],
+		children: [
+			{ path: '', pathMatch: 'full', redirectTo: 'localidades' },
+			{ path: 'localidades', component: AdminLocalidadesComponent  },
+			{ path: 'viajes', component: AdminViajesComponent  },
+			{ path: 'pasajes', component: AdminPasajesComponent  },
+			{ path: '**', pathMatch: 'full', redirectTo: '' }
+		]
+	},
 ];
 
 @NgModule({
