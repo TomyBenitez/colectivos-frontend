@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-authregister',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./authregister.component.scss']
 })
 export class AuthregisterComponent {
+
+  constructor(private _auth:AuthService){}
 
   formData = {
     nombre: '',
@@ -34,6 +37,10 @@ export class AuthregisterComponent {
     } //si las contraseñas no coinciden retorna
     
     this.showError = false;
-    console.log(this.formData)
+
+    this._auth.createUser(this.formData).subscribe(res => {
+      console.log(res);
+    })
+
   }
 }
