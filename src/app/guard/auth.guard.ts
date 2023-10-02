@@ -7,7 +7,7 @@ import { CanActivate, Router } from '@angular/router';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
   
-  usuarioAutenticado:boolean=false;
+  usuarioAutenticado:boolean=true;
 
   canActivate(): boolean {
     if(this.usuarioAutenticado){

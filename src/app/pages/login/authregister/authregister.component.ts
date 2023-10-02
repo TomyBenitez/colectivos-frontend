@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-authregister',
   templateUrl: './authregister.component.html',
   styleUrls: ['./authregister.component.scss']
 })
-export class AuthregisterComponent {
+export class AuthregisterComponent{
 
   constructor(private _auth:AuthService){}
 
@@ -21,7 +22,6 @@ export class AuthregisterComponent {
 
   messageError:string='';
   showError:boolean=false;
-
 
   submitForm(){
     if(this.formData.correo !== this.formData.repetircorreo){
@@ -39,7 +39,8 @@ export class AuthregisterComponent {
     this.showError = false;
 
     this._auth.createUser(this.formData).subscribe(res => {
-      console.log(res);
+      //exito
+      Swal.fire('Usuario Creado Exitosamente', 'redirigiendo...', 'success')
     })
 
   }

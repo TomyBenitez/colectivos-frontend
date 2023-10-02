@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 import { AdminLocalidadesComponent } from './components/admin-localidades/admin-localidades.component';
 import { AdminViajesComponent } from './components/admin-viajes/admin-viajes.component';
 import { AdminPasajesComponent } from './components/admin-pasajes/admin-pasajes.component';
+import { AdminEmpresasComponent } from './components/admin-empresas/admin-empresas.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AdminPasajesComponent } from './components/admin-pasajes/admin-pasajes.
     AdminComponent,
     AdminLocalidadesComponent,
     AdminViajesComponent,
-    AdminPasajesComponent
+    AdminPasajesComponent,
+    AdminEmpresasComponent
   ],
   imports: [
     CommonModule,
