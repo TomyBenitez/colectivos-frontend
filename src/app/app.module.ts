@@ -7,7 +7,7 @@ import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import ContainerComponent from './components/shared/container/container.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment';
@@ -25,6 +25,7 @@ import { environment } from 'src/environments/environment';
     RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     provideFirebaseApp(()=>initializeApp(environment.firebaseConfig)),
     provideAuth(()=>getAuth())
   ],

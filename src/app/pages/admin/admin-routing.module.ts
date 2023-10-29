@@ -17,7 +17,7 @@ const routes: Routes = [
 			{ path: 'localidades', component: AdminLocalidadesComponent  },
 			{ path: 'viajes', component: AdminViajesComponent  },
 			{ path: 'pasajes', component: AdminPasajesComponent  },
-			{ path: 'empresas',component:AdminEmpresasComponent },
+			{path: 'empresas', component:AdminEmpresasComponent },
 			{ path: '**', pathMatch: 'full', redirectTo: '' }
 		]
 	},
