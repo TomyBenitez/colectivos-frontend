@@ -4,7 +4,7 @@
     align-content: center;
     width: 100%;
     .tarjeta{
-        background: linear-gradient(to bottom left,#5ed0d5ff, #de37f1ff);
+        background-color: #181818;
         width: 500px;
         min-height: 500px;
         display: flex;
@@ -12,7 +12,7 @@
         align-items: center;
         flex-direction: column;
         border-radius: 4px;
-        box-shadow: 0px 0px 10px black;
+        box-shadow: 0px 1px 10px black;
         form{
             display: flex;
             justify-content: center;
@@ -21,7 +21,7 @@
             gap: 5px;
         }
         p{
-            color: black;
+            color: white;
             font-family: Arial, Helvetica, sans-serif;
             font-size: small;
             font-weight: bold;
@@ -34,14 +34,14 @@
             outline: none;
         }
         a{
-            color:blue;
+            color:#eab308;
         }
         button{
             padding: 5px;
             width: 80%;
             border-radius: 3px;
             box-shadow: 0px 2px 5px black;
-            background-color: blue;
+            background-color: red;
             color: white;
             font-size: small;
         }
