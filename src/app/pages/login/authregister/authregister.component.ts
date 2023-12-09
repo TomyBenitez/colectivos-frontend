@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class AuthregisterComponent{
 
-  constructor(private _auth:AuthService){}
+  constructor(private _auth:AuthService, private router:Router){}
 
   formData = {
     nombre: '',
@@ -40,7 +41,8 @@ export class AuthregisterComponent{
 
     this._auth.createUser(this.formData).subscribe(res => {
       //exito
-      Swal.fire('Usuario Creado Exitosamente', 'redirigiendo...', 'success')
+      Swal.fire('Usuario Creado Exitosamente', 'redirigiendo...', 'success');
+      this.router.navigate(['/auth/login'])
     })
 
   }

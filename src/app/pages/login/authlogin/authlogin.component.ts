@@ -31,6 +31,7 @@ export class AuthloginComponent {
         this.router.navigateByUrl('/admin/localidades');
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
+        Swal.fire('Inicio de Sesión Fallido', 'compruebe que los datos ingresados sean correctos', 'error');
       }
     }
   }

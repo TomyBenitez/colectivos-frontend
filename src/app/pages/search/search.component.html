@@ -1,1 +1,20 @@
-<h2 class="text-3xl font-bold">Buscar</h2>
+<div *ngIf="formData==null||undefined" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center">
+    <h1 class="text-2xl font-bold mb-2">Error, información inválida</h1>
+    <h2 class="text-2 mb-2">primero ve a inicio, rellena el formulario y haz click en "Buscar"</h2>
+    <p routerLink="inicio" class="font-bold cursor-pointer ">Ir a inicio</p>
+</div>
+<div *ngIf="viajesFiltrados!== null || undefined">
+    <div *ngFor="let viaje of viajesFiltrados" class="shadow-md p-6 rounded-md shadow-md text-center">
+        <div class="flex flex-row text-center justify-center space-x-4">
+            <h2>Fecha Salida: {{viaje.fecha_salida | date:'dd-MM-yyyy'}}</h2>
+            <h2>Hora: {{viaje.hora_salida}}</h2>
+        </div>
+        <p>Asientos Disponibles: {{viaje.asientos_disponibles}}</p>
+        <div class="flex flex-row text-center justify-center space-x-4">
+            <p>Origen: {{viaje.origen_localidad.nombre}}</p><p>Destino: {{viaje.destino_localidad.nombre}}</p>
+        </div>
+        <a href="{{viaje.empresa.website_url}}">Empresa: {{viaje.empresa.nombre}}</a>
+        <br>
+        <button class="bg-red-500 text-white border border-black px-4 py-2 rounded-md">Comprar</button>
+    </div>
+</div>

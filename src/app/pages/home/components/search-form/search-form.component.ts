@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { GlobalProviderService } from 'src/app/services/global-provider.service';
 import LocalidadesService from 'src/app/services/localidades.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import ViajesService from 'src/app/services/viajes.service';
 
 @Component({
   selector: 'app-search-form',
@@ -44,7 +46,7 @@ export class SearchFormComponent implements OnInit {
     return this.formBus.get('desde') as FormControl;
   }
 
-  constructor( private _localidades: LocalidadesService, private _gs: GlobalProviderService, private formBuilder: FormBuilder ) {
+  constructor( private _localidades: LocalidadesService, private _viajes:ViajesService, private _gs: GlobalProviderService, private formBuilder: FormBuilder, private router:Router) {
     this.toggleIdaVuelta(false);
   }
 
@@ -113,9 +115,10 @@ export class SearchFormComponent implements OnInit {
         destino: formData.destino,
         pasajeros: formData.pasajeros,
         ida: formData.desde,
-        vuelta: formData.hasta
+        vuelta: formData.hasta  
       };
-      console.log(jsonColectivos);
+      this._viajes.setFormData(jsonColectivos);
+      this.router.navigate(['/search']);
     }
   }
   
