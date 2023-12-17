@@ -1,6 +1,6 @@
 <form class="flex flex-col justify-between gap-4" (ngSubmit)="submitForm()" [formGroup]="formBus">
 	<div class="flex flex-col gap-4">
-		<label class="label">
+		<label class="label white-text">
 			Desde:
 			<select #selectOrigen (change)="emitirOrigen(selectOrigen)" class="input" id="from-list" formControlName="salida">
 				<option value="">Seleccione una ciudad</option>
@@ -15,7 +15,7 @@
 				<p class="error-message">Origen Invalido! ¿desde donde quieres comenzar tu viaje?</p>
 			</div>
 		</label>
-		<label class="label">
+		<label class="label white-text">
 			Hasta:
 			<select #selectDestino (change)="emitirDestino(selectDestino)" class="input" id="from-list" formControlName="destino">
 				<option value="">Seleccione una ciudad</option>
@@ -31,15 +31,15 @@
 			</div>
 		</label>
 		<div class="grid grid-cols-4 gap-4">
-			<label class="label">
+			<label class="label white-text">
 				Cant. Pasajeros:
 				<input class="input" type="number" placeholder="1" formControlName="pasajeros">
 			</label>
-			<label class="label">
+			<label class="label white-text">
 				Ida:
 				<input class="input" name="desde" [min]="hoyDesde | date:'yyyy-MM-dd'" formControlName="desde" type="date">
 			</label>
-			<label class="label">
+			<label class="label white-text">
 				<span>Vuelta:</span>
 				<input class="input" name="hasta" [min]="formBus.get('desde')?.value ? formBus.get('desde')?.value : hoyHasta | date:'yyyy-MM-dd'" formControlName="hasta" type="date">
 			</label>
@@ -59,6 +59,6 @@
 	<div class="h-auto flex flex-col gap-4">
 		<button class="bg-yellow-500 text-black py-5 px-8 rounded-md shadow-sm font-bold text-xl" type="submit">Buscar</button>
 		<hr>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet inventore, corporis autem omnis vitae eaque culpa recusandae veniam ipsam eum? Maxime molestias numquam magni, debitis illo eveniet sed quas sit?</p>
+		<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet inventore, corporis autem omnis vitae eaque culpa recusandae veniam ipsam eum? Maxime molestias numquam magni, debitis illo eveniet sed quas sit?</p>
 	</div>
 </form>

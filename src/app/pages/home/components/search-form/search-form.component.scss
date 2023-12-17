@@ -5,6 +5,17 @@
 .label{
 	@apply flex flex-col gap-1 font-semibold text-sm
 }
+.white-text{
+	color: #EEE;
+}
+
+input{
+	color: black;
+}
+
+select{
+	color: black;
+}
 
 .error-message{
 	color: red;

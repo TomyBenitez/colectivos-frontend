@@ -1,20 +1,30 @@
-<div *ngIf="formData==null||undefined" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center">
+<div *ngIf="formData==null||undefined || viajesFiltrados == null||undefined" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center">
     <h1 class="text-2xl font-bold mb-2">Error, información inválida</h1>
-    <h2 class="text-2 mb-2">primero ve a inicio, rellena el formulario y haz click en "Buscar"</h2>
+    <h2 class="text-2 mb-2">No se encontró ningún viaje con esa información, intenta nuevamente...</h2>
     <p routerLink="inicio" class="font-bold cursor-pointer ">Ir a inicio</p>
 </div>
-<div *ngIf="viajesFiltrados!== null || undefined">
-    <div *ngFor="let viaje of viajesFiltrados" class="shadow-md p-6 rounded-md shadow-md text-center">
-        <div class="flex flex-row text-center justify-center space-x-4">
-            <h2>Fecha Salida: {{viaje.fecha_salida | date:'dd-MM-yyyy'}}</h2>
-            <h2>Hora: {{viaje.hora_salida}}</h2>
+<div *ngIf="viajesFiltrados!== null || undefined" id="viajes">
+    <div *ngFor="let viaje of viajesFiltrados" class="shadow-md p-6 rounded-md shadow-md text-center background-black flex space-x-48 flex-row justify-center m-2 sombra">
+        <div class="flex items-end">
+            <div class="flex flex-row div-tarjetas sombra">
+                <img src="https://centraldepasajes.com.ar/cdp/img/v5/ic-tarjeta.png" width="32px" alt="tarjeta">
+                <img src="https://centraldepasajes.com.ar/cdp/img/v5/ic-mpgris.png" width="32px" alt="Dinero MP">
+                <img src="https://centraldepasajes.com.ar/cdp/img/v5/ic-eticket.png" width="32px" alt="E-Ticket">
+            </div>
         </div>
-        <p>Asientos Disponibles: {{viaje.asientos_disponibles}}</p>
-        <div class="flex flex-row text-center justify-center space-x-4">
-            <p>Origen: {{viaje.origen_localidad.nombre}}</p><p>Destino: {{viaje.destino_localidad.nombre}}</p>
+        <div>
+            <div class="flex flex-col flex-1 space-x-4">
+                <h2><span>Fecha:</span> {{viaje.fecha_salida | date:'dd-MM-yyyy'}}</h2>
+                <h2><span>Sale:</span> {{viaje.hora_salida}}</h2>
+                <div class="flex flex-row text-center justify-center space-x-4">
+                    <p><span>Origen:</span> {{viaje.origen_localidad.nombre}}</p><p><span>Destino:</span> {{viaje.destino_localidad.nombre}}</p>
+                </div>
+            </div>
+            <p><span>Asientos Disponibles:</span> {{viaje.asientos_disponibles}}</p>
+            <a href="{{viaje.empresa.website_url}}"><span>Empresa:</span> {{viaje.empresa.nombre}}</a>
         </div>
-        <a href="{{viaje.empresa.website_url}}">Empresa: {{viaje.empresa.nombre}}</a>
-        <br>
-        <button class="bg-red-500 text-white border border-black px-4 py-2 rounded-md">Comprar</button>
+        <div class="flex items-center">
+            <button class="bg-red-500 text-white border border-black px-4 py-2 rounded-md sombra">Comprar</button>
+        </div>
     </div>
 </div>
