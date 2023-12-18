@@ -31,7 +31,6 @@ export class SearchComponent implements OnInit {
             viaje.destinos.some((destino:any) => destino._id === this.formData.destino)
           )
         })
-        console.log(this.viajesFiltrados)
       })
     }
   }
